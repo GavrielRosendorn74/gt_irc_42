@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:25:40 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/05 08:40:04 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/05 08:51:18 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ class Command
 		Command *build(string raw);
 		void execute();
         ~Command();
-
     private:
 		vector<string>	_args;
         Client *		_client;
@@ -39,7 +38,7 @@ class Command
 		string			_command;
 		vector<string>	_args;
 		// FUNCTIONS
-		bool			redirectExec();
+		bool			redirectExec(void);
 		// COMMANDS
 		void			_die();
 		void			_join();
