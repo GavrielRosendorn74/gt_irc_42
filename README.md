@@ -1,3 +1,7 @@
-### IRC PROJECT
+### IRC
 
-## 
+## Introd
+
+## Créateurs
+
+Tbillion & Grosendo
