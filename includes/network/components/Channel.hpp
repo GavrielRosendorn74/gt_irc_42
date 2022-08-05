@@ -6,17 +6,16 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:12:00 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/05 08:17:33 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/05 09:33:57 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Server.hpp"
-#include "../Client.hpp"
-#include <vector>
-#include <iostream>
-
 #ifndef CHANNEL_HPP
 # define CHANNEL_HPP
+
+#include "../../Libraries.hpp"
+#include "../Server.hpp"
+#include "../Client.hpp"
 
 using namespace std;
 

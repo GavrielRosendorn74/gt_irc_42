@@ -6,17 +6,16 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:56:45 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/05 08:10:08 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/05 09:32:42 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Server.hpp"
-#include <vector>
-#include <iostream>
-#include <poll.h>
-
 #ifndef CLIENT_HPP
 # define CLIENT_HPP
+
+#include "../Libraries.hpp"
+#include "components/Channel.hpp"
+#include "Server.hpp"
 
 enum ClientRole {
 	ANONYMOUS,
