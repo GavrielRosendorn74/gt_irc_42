@@ -25,6 +25,8 @@ En cours...
 
 ## Partie 2 : Mise en place des commandes
 
+En cours...
+
 ### Créateurs
 
 Tbillion & Grosendo
