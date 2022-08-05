@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:56:45 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/05 05:11:29 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/05 08:10:08 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ private:
 	std::string _realname;
 	ClientRole	_role;
 	Server *	_server;
-	
 public:
 	Client(int port);
 	~Client();

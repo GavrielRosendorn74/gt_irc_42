@@ -6,10 +6,12 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:34:36 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/05 05:11:07 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/05 08:15:06 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "components/Channel.hpp"
+#include "Client.hpp"
 #include <vector>
 #include <iostream>
 
