@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Command.hpp                                        :+:      :+:    :+:   */
+/*   ListCommand.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/05 04:25:40 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/05 05:12:50 by grosendo         ###   ########.fr       */
+/*   Created: 2022/08/05 05:14:13 by grosendo          #+#    #+#             */
+/*   Updated: 2022/08/05 05:18:03 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vector>
-#include <iostream>
+#ifndef LIST_COMMAND_HPP
+# define LIST_COMMAND_HPP
 
-#ifndef COMMAND_HPP
-# define COMMAND_HPP
-
-using namespace std;
-
-class Command
-{
-
-    public:
-        Command(Server *server, Client *client);
-        ~Command();
-
-    private:
-		std::vector<std::string> _args;
-        Client         *_client;
-        Server         *_server;
-};
+# define DIE "DIE"
+# define JOIN "DIE"
+# define NICK "DIE"
+# define MODE "DIE"
+# define PART "DIE"
+# define PRIVMSG "DIE"
+# define NOTICE "DIE"
+# define QUIT "DIE"
+# define USER "USER"
+# define PING "USER"
+# define PONG "USER"
+# define KICK "USER"
+# define QUIT "USER"
 
 #endif
