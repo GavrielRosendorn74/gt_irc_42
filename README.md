@@ -21,6 +21,11 @@ Une fois la norme RCF décortiqué deux grandes parties dans ce projet sont mise
 
 ### Partie 1 : Mise en place d'un réseau
 
+Log 1 : On parvient a lancer un socket ! 
+Log 2 : On parvient a capter une nouvelle connexion !
+Executez : c++ srcs/main.cpp srcs/network/Server.cpp srcs/Utils.cpp 
+puis  ./a.out "20" "password"
+
 En cours...
 
 ### Partie 2 : Mise en place des commandes

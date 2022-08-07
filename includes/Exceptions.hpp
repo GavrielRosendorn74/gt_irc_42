@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:14:45 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/05 10:14:08 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/07 07:23:09 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ using namespace std;
 #define USER_ALREADY_IN_CHAN "ERROR: User already present in this channel"
 #define NO_SUCH_USER "ERROR: No such User"
 #define No_SUCH_COMMAND "ERROR: No such Command"
+#define POLL_ERROR "ERROR: Poll has broke."
 
 class Exception
 {
@@ -56,6 +57,11 @@ class Exception
         class invalid_port : public exception
         {
             const char *what() const throw() {return PORT_INVALID;}
+        };
+
+		class poll_error : public exception
+        {
+            const char *what() const throw() {return POLL_ERROR;}
         };
 
         class invalid_pwd_format : public exception

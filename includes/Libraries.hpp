@@ -6,16 +6,17 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:34:19 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/05 10:23:51 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/07 07:25:01 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBRARIES_HPP
 # define LIBRARIES_HPP
 
-using namespace std;
 #include "Exceptions.hpp"
+#include "Utils.hpp"
 #include <iostream>
+using namespace std;
 #include <sys/socket.h> //sockets  setsockopt getsockname  getaddrinfo freeaddrinfo  bind connect listen accept send recv
 #include <netdb.h> //getprotobyname gethostbyname  getaddrinfo freeaddrinfo
 #include <arpa/inet.h> //htons htonl ntohs ntohl inet_addr inet_ntoa
@@ -26,8 +27,8 @@ using namespace std;
 #include <poll.h> //poll
 #include <sys/select.h> //select
 #include <vector>
+#include <map>
 #include <sstream> //istringstream
-#include <stdlib.h> // iota
 
 #define MAX_CLIENTS 100
 

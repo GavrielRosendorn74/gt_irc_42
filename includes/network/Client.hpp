@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:56:45 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/05 09:32:42 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:30:43 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ enum ClientRole {
 	DISCONNECTED
 };
 
+class Server; 
+
 class Client 
 {
 
 private:
-	int _port;
-	pollfd		_pollfd;
+	int			_port;
+	pollfd *	_pollfd;
 	std::string _nickname;
 	std::string _username;
 	std::string _realname;
