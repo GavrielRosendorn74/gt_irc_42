@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:12:00 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 19:20:11 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 22:10:30 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include "../Server.hpp"
 #include "../Client.hpp"
 
+# define NEWCHANNELADMIN(client)	client + "  is now the new administrator of this channel"
+# define CLIENTKICKED(client)		client + " has been kicked from this channel : "
+
 using namespace std;
 
 class Server;
@@ -25,12 +28,24 @@ class Client;
 class Channel
 {
 	public:
-		Channel(Server *server);
+		Channel(const std::string &name, Client *admin);
 		~Channel();
+
+		std::string					getName();
+		std::vector<Client*>		*getClients();
+		Client						*getAdmin();
+
+		void						rmvClient(Client *client);
+		void						addClient(Client *client);
+		void						kick(Client *client, Client *target, std::string &comment);
+
+
+
 	private:
-		Client *		 _admin;
+		string			 _name;
+		Client 			*_admin;
 		vector<Client *> _clients;
-		Server *		 _server;
+		Server 		 	*_server;
 };
 
 #endif
