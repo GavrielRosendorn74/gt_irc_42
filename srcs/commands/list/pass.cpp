@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pass.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:28 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 20:32:58 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 23:20:57 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ void    Command::_pass()
         {
             if (_server->getPassword() == _args[0])
                 _client->setRole(CONNECTED);
-            //* REPLY FUNCTION TO RETURN REPLY CODE -> invalid pswd
+            _client->reply(ERR_PASSWDMISMATCH(_client->getNickname()));
+            return ;
         }
-        //* REPLY FUNCTION TO RETURN REPLY CODE -> args error
+        _client->reply(ERR_NEEDMOREPARAMS(_client->getNickname(), PASS));
+        return ;
     }
-    //* REPLY FUNCTION TO RETURN REPLY CODE -> user already registered
+    _client->reply(ERR_ALREADYREGISTERED(_client->getNickname()));
+    return ;
 }

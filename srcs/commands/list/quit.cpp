@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quit.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:38 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 20:32:58 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 23:18:31 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,5 @@ void    Command::_quit()
     else
         comment = _args.at(0);
     
-    //* REPLY FUNCTION TO RETURN REPLY CODE
-    //* client write message and send REPLY code to quit server
+    _client->write(RPL_QUIT(_client->prefix(), comment));
 }

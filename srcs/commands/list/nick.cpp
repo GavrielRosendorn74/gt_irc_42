@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nick.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:28:14 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/08 20:33:25 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 23:27:14 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,15 @@ void    Command::_nick()
     _server->log("/NICK exec function called");
     if (!(_args.empty()))
     {
-        _client->setNickname(_args[0]);
-        _client->welcomeMsg();
+        std::string nick = _args[0];
+        if (!(_server->findByClientNickname(nick)))
+        {
+            _client->setNickname(_args[0]);
+            _client->welcomeMsg();
+        }
+        _client->reply(ERR_NICKNAMEINUSE(_client->getNickname()));
+        return ;
     }
-    //* REPLY FUNCTION TO RETURN REPLY CODE -> args error
+    _client->reply(ERR_NONICKNAMEGIVEN(_client->getNickname()));
+    return ;
 }
