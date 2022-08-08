@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:28 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 23:20:57 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 00:36:47 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,21 @@ void    Command::_pass()
         {
             if (_server->getPassword() == _args[0])
                 _client->setRole(CONNECTED);
-            _client->reply(ERR_PASSWDMISMATCH(_client->getNickname()));
+            else
+            {
+                _client->reply(ERR_PASSWDMISMATCH(_client->getNickname()));
+                return ;
+            }
+        }
+        else
+        {
+            _client->reply(ERR_NEEDMOREPARAMS(_client->getNickname(), PASS));
             return ;
         }
-        _client->reply(ERR_NEEDMOREPARAMS(_client->getNickname(), PASS));
+    }
+    else
+    {
+        _client->reply(ERR_ALREADYREGISTERED(_client->getNickname()));
         return ;
     }
-    _client->reply(ERR_ALREADYREGISTERED(_client->getNickname()));
-    return ;
 }
