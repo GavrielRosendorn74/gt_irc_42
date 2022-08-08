@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:25:40 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 22:38:14 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 23:56:54 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ class Command
 		void			_kick();
 		void			_pass();
 		void			_who();
+		void			_help();
 };
 
 #endif
