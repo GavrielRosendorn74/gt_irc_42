@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:37:56 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 21:39:09 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 22:10:58 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,22 @@ Command::~Command(){}
 
 Command *Command::build(string raw)
 {
+	int index = 0;
+	// SKIP SPACES
+	while (raw[index] == ' ') index++;
+	raw = raw.substr(index);
+	// GET PREFIX
+	if (raw[0] == ':') {
+		if (raw.find(' ') != string::npos) {
+			_prefix = raw.substr(0, raw.find(' '));
+			raw = raw.substr(raw.find(' '));
+		} else {
+			_prefix = raw;
+		}
+	} else _prefix = "";
+	
+	_command = "";
+	_args.push_back("");
 	return (this);
 }
 
