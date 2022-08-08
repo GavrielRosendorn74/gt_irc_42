@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:12:00 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/05 13:16:31 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:20:11 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 using namespace std;
 
 class Server;
+class Client;
 
 class Channel
 {

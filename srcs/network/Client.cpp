@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 17:53:48 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/08 18:32:49 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 19:22:41 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Client::~Client() {}
 
 void    Client::join(Channel *channel)
 {
-    channel->addClient(this);
+    //channel->addClient(this);
     _channel = channel;
 
     //* get channe users function -> store it in a vector  */
@@ -34,4 +34,9 @@ void    Client::welcomeMsg()
     _role = CONNECTED;
     //* display welcome message HERE
     //* user now know as "NEW NICKNAME"
+}
+
+void    Client::quit()
+{
+	
 }

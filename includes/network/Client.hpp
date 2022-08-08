@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:56:45 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 19:04:07 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:20:26 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ enum ClientRole {
 };
 
 class Server; 
+class Channel; 
 
 class Client 
 {

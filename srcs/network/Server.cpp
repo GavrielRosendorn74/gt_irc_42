@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:18:31 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 19:11:59 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:24:31 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,13 @@ void Server::_onClientConnect() {
 
 void Server::_onClientDisconnect(Client *client) {
 		client->quit();
-		_clients.erase(_findClient(client));
-		_fds.erase(_findFd(*(client->getFd())));
+		_clients.erase(findClient(client));
+		_fds.erase(findFd(*(client->getFd())));
 		log("New client connected on port : " + ft_itoastr(client->getPort()));
 		delete client;
 }
 
-client_it Server::_findClient(Client *client) 
+client_it Server::findClient(Client *client) 
 {
 	for (client_it it = _clients.begin(); it != _clients.end(); it++) {
 		if ((*it) == client)
@@ -113,7 +113,7 @@ client_it Server::_findClient(Client *client)
 	return (_clients.end());
 }
 
-poll_it Server::_findFd(pollfd fd) 
+poll_it Server::findFd(pollfd fd) 
 {
 	for (poll_it it = _fds.begin(); it != _fds.end(); it++) {
 		if ((*it).fd == fd.fd)
@@ -161,7 +161,7 @@ void		Server::live()
 
 				if (it->fd == _sock_fd) {
 					log("Welcome to our server !");
-					//onClientConnect();
+					_onClientConnect();
 					break;
 				}
 

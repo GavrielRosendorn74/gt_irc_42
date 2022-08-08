@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:34:36 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 19:14:22 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:21:50 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include "../Libraries.hpp"
 #include "components/Channel.hpp"
 #include "Client.hpp"
+
+class Client;
+class Channel;
 
 using namespace std;
 
@@ -35,8 +38,6 @@ class Server
 		vector<Channel *>		_channels;
 		vector<pollfd>			_fds;
 		
-		client_it				_findClient(Client *client);
-		poll_it					_findFd(pollfd fd);
 		void					_onClientConnect();
 		void					_onClientDisconnect(Client *client);
 		void 					_onClientMessage(Client *client);
@@ -46,11 +47,13 @@ class Server
 		Server(const string &port, const string &password);
 		~Server();
 		// FUNCTIONS
-		string		getPassword();
+		string					getPassword();
+		client_it				findClient(Client *client);
+		poll_it					findFd(pollfd fd);
 		vector<Client *>		getClients();
-		void		log(string message);
-		Server *	launch();
-		void		live();
+		void					log(string message);
+		Server *				launch();
+		void					live();
 };
 
 
