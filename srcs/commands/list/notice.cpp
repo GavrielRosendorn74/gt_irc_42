@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:22 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:47:38 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 01:51:45 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void Command::_notice()
 			return;
 		}
 
-		channel->broadcast(RPL_NOTICE(_clients->prefix(), target, message), _client);
+		channel->broadcast(RPL_NOTICE(_client->prefix(), target, message), _client);
 		return;
 	}
 
