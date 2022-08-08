@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:34:36 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 19:21:50 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 20:12:22 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ class Server
 		void					_onClientConnect();
 		void					_onClientDisconnect(Client *client);
 		void 					_onClientMessage(Client *client);
-		std::string				_readMessageOfClient(Client *client);
+		string					_readMessageOfClient(Client *client);
 	public:
 		// CONSTRUCTORS
 		Server(const string &port, const string &password);
 		~Server();
 		// FUNCTIONS
 		string					getPassword();
+		Client *				findClientByFd(pollfd fd);
 		client_it				findClient(Client *client);
 		poll_it					findFd(pollfd fd);
 		vector<Client *>		getClients();

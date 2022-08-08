@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:18:31 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 19:24:31 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 20:21:09 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,15 @@ client_it Server::findClient(Client *client)
 	return (_clients.end());
 }
 
+Client * Server::findClientByFd(pollfd fd) 
+{
+	for (client_it it = _clients.begin(); it != _clients.end(); it++) {
+		if ((*it)->getFd()->fd == fd.fd)
+			return (*it);
+	}
+	return (*_clients.end());
+}
+
 poll_it Server::findFd(pollfd fd) 
 {
 	for (poll_it it = _fds.begin(); it != _fds.end(); it++) {
@@ -131,6 +140,35 @@ vector<Client *>	Server::getClients()
 {
 	return _clients;
 }
+
+void		Server::_onClientMessage(Client *client)
+{
+	string message = _readMessageOfClient(client);
+	log(client->getNickname() + " has sent " + message);
+	
+}
+
+string		Server::_readMessageOfClient(Client *client)
+{
+	std::string message;
+
+	char buffer[100];
+	bzero(buffer, 100);
+
+	while (!std::strstr(buffer, "\r\n")) {
+		bzero(buffer, 100);
+
+		if (recv(client->getFd()->fd, buffer, 100, 0) < 0) {
+			if (errno != EWOULDBLOCK)
+				throw std::runtime_error("Error while reading buffer from client.");
+		}
+
+		message.append(buffer);
+	}
+
+	return message;
+}
+
 
 void		Server::live()
 {
@@ -165,7 +203,7 @@ void		Server::live()
 					break;
 				}
 
-				//onClientMessage(it->fd);
+				_onClientMessage(findClientByFd(*it));
 			}
 		}
 	}
