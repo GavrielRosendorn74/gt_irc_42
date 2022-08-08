@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 19:01:35 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/09 01:17:19 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 01:19:07 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void    Command::_who()
     {
         // check if channel provided exists ?
         vector<Client*> *users;
-        if (!(users = getUsersFromChannel(_server->findChannel())))
+        if (!(users = getUsersFromChannel(_server->findChanneLByName())))
             _client->reply("NO SUCH CHANNEL");
         else
         {
