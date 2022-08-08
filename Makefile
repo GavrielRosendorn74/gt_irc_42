@@ -18,7 +18,7 @@ RM	= rm -rf
 
 CC = c++ -std=c++98
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -g -Wall -Werror -Wextra
 
 SRCS = main.cpp Utils.cpp
 

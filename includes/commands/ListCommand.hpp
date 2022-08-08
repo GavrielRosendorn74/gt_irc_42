@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ListCommand.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 05:14:13 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 20:02:29 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 01:09:04 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@
 # define KICK "KICK"
 # define PASS "PASS"
 # define WHO "WHO"
+# define HELP "HELP"
+
 
 #endif

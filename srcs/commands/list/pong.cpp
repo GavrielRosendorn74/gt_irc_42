@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:33 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 20:35:42 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 01:02:01 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void    Command::_pong()
 {
-    //if (!(_args.empty()))
-        //* write pong
-        //_client->write(RPL_PING(_client->getPrefix(), arguments.at(0)));
-   // else
-        //* REPLY() args error
+	if (_args.empty()) {
+		_client->reply(ERR_NEEDMOREPARAMS(_client->getNickname(), "PONG"));
+		return;
+	}
+
+	_client->write(RPL_PING(_client->prefix(), _args.at(0)));
 
 }
