@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:37:56 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 22:52:25 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 23:12:17 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ Command *Command::build(string raw)
 		_command = raw;
 		return (this);
 	}
-	_server->log("\n\n" + raw);
 	// GET ARGS
 	while (1)
 	{

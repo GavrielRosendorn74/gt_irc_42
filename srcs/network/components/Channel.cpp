@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 20:39:54 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/08 22:38:48 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 23:07:39 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/network/components/Channel.hpp"
+#include "../../../includes/network/components/Channel.hpp"
 
 Channel::Channel(const std::string &name, Client *admin) : _name(name), _admin(admin) {}
 

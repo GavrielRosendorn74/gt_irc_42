@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:18:31 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 23:02:40 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 23:29:47 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,11 @@ void Server::_onClientConnect() {
 
 
 void Server::_onClientDisconnect(Client *client) {
+		log("CLIENT DISCONNECT");
 		client->quit();
 		_clients.erase(findClient(client));
 		_fds.erase(findFd(*(client->getFd())));
-		log("New client connected on port : " + ft_itoastr(client->getPort()));
+		log("Client connected on port " + ft_itoastr(client->getPort()) + " left !");
 		delete client;
 }
 
@@ -121,7 +122,16 @@ Client * Server::findClientByFd(pollfd fd)
 		if ((*it)->getFd()->fd == fd.fd)
 			return (*it);
 	}
-	return (*_clients.end());
+	return (NULL);
+}
+
+Client * Server::findClientByNickname(string nickname) 
+{
+	for (client_it it = _clients.begin(); it != _clients.end(); it++) {
+		if ((*it)->getNickname() == nickname) 
+			return (*it);
+	}
+	return (NULL);
 }
 
 poll_it Server::findFd(pollfd fd) 
@@ -156,11 +166,18 @@ void		Server::_onClientMessage(Client *client)
 	// BREAK IF MANY LINES
 	while (message.find('\n') != string::npos || message.find('\r') != string::npos)
 	{
+		// SKIP /R/N
+		int index = 0;
+		while (message[index] == '\n' || message[index] == '\r') index++;
+		message = message.substr(index);
+		if (message.length() == 0)
+			break ;
+		// EXEC
 		size_t i = (message.find('\n') != string::npos) ? message.find('\n') : message.find('\r');
 		if ((message.find('\n') != string::npos && message.find('\r') != string::npos) && message.find('\r') < message.find('\n'))
 			i = message.find('\r');
 		Command * command = new Command(this, client);
-		command->build(message)
+		command->build(message.substr(0, i))
 			->execute();
 		delete command;	
 		message = message.substr(i);
@@ -206,13 +223,13 @@ void		Server::live()
 			if (it->revents == 0)
 				continue;
 
-			if (it->revents == POLLHUP) {
+			if ((it->revents & POLLHUP) == POLLHUP) {
 				//DISCONNECT
-				//onClientDisconnect(it->fd);
+				_onClientDisconnect(findClientByFd(*it));
 				break;
 			}
 
-			if (it->revents == POLLIN) {
+			if ((it->revents & POLLIN) == POLLIN) {
 
 				if (it->fd == _sock_fd) {
 					_onClientConnect();

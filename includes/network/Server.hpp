@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:34:36 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 21:52:20 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 23:26:49 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ class Server
 		~Server();
 		// FUNCTIONS
 		string					getPassword();
+		Client *				findClientByNickname(string nickname);
 		Client *				findClientByFd(pollfd fd);
 		client_it				findClient(Client *client);
 		void					removeChannel(Channel *channel);
