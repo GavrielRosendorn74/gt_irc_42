@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:40 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 00:00:16 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 00:03:24 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void    Command::_user()
     _server->log("/USER exec function called");
     if (!(_client->isRegistered()))
     {
-        if (_args.size() == 4)
+        if (_args.size() >= 4)
         {
             _client->setUsername(_args[0]);
             _client->setNickname(_args[3]);

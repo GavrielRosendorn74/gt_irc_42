@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 17:53:48 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/08 23:56:40 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 00:09:45 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void    Client::join(Channel *channel)
 
 void    Client::welcomeMsg()
 {
-    if (_username.empty() || _nickname.empty() || _realname.empty())
+    if (_username.empty() || _nickname.empty() || _realname.empty()) {
+		return ;
+	}
         //* REPLY() error empty nick or realname or username
 
     _role = CONNECTED;
