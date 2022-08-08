@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 17:53:48 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/08 23:03:20 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 23:56:40 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,7 @@ void    Client::write(const std::string &message) const
 	if (send(_pollfd->fd, buff.c_str(), buff.length(), 0) > 0)
         _server->log(MSG_SENT);
     else
-    {
         _server->log(ERR_MSG_NOT_SENT);
-        //* REPLY() runtime error while sending message 
-    }
 }
 
 std::string Client::prefix() const 
@@ -68,5 +65,5 @@ std::string Client::prefix() const
 
 void    Client::reply(const std::string &reply) const
 {
-    this->write(":" + prefix() + reply);
+    this->write(":" + prefix() + " " + reply);
 }

@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:37:56 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 23:12:17 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 23:52:53 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void Command::execute()
 {
 	printParsing();
 	if (!_redirectExec())
-		_server->log(_command + " is not a recognized command.");
+		_client->reply(ERR_UNKNOWNCOMMAND(_client->prefix(), _command));
 }
 
 bool isValidCmd(std::string command)

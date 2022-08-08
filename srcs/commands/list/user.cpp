@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:40 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 23:16:35 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 00:00:16 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void    Command::_user()
             _client->setNickname(_args[3]);
             /* Send welcome message */
             _client->welcomeMsg();
-        }
-        _client->reply(ERR_NEEDMOREPARAMS(_client->getNickname(), USER));
+        } else 
+        	_client->reply(ERR_NEEDMOREPARAMS(_client->getNickname(), USER));
         return ;
     }
     _client->reply(ERR_ALREADYREGISTERED(_client->getNickname()));
