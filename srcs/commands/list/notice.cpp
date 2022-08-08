@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:22 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:51:45 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 01:52:26 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void Command::_notice()
 
 	Client *dest = _server->findClientByNickname(target);
 	if (!dest) {
-		//_clients->reply(ERR_NOSUCHNICK(_clients->getNickname(), target));
+		_client->reply(ERR_NOSUCHNICK(_client->getNickname(), target));
 		return;
 	}
 
