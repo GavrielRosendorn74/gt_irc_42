@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:38 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 18:50:04 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 19:30:15 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void    Command::_quit()
 {
+    _server->log("/QUIT exec function called");
     std::string comment;
     if (_args.empty())
         comment = "Leaving...";

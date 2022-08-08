@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:28 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 18:57:36 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 19:29:58 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void    Command::_pass()
 {
+    _server->log("/PASS exec function called");
     if (!(_client->isRegistered()))
     {
         if (!(_args.empty()))

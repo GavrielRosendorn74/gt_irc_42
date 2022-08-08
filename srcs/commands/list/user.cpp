@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:40 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 18:51:39 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 19:30:26 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void    Command::_user()
 {
+    _server->log("/USER exec function called");
     if (!(_client->isRegistered()))
     {
         if (_args.size() == 4)

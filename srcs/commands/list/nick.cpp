@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:28:14 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/08 18:51:48 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 19:29:17 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void    Command::_nick()
 {
+    _server->log("/NICK exec function called");
     if (!(_args.empty()))
     {
         _client->setNickname(_args[0]);

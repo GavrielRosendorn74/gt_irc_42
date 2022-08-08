@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 19:01:35 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/08 19:21:18 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 19:30:33 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ vector<Client*> *getUsersFromChannel(Channel *channel)
 
 void    Command::_who()
 {
+    _server->log("/WHO exec function called");
     if (!(_args.empty())) // if _args are not empty -> then list users in channel corresponding to _args[0]
     {
         // check if channel provided exists ?
