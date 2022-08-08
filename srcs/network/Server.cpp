@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:18:31 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 18:52:51 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:11:59 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void Server::_onClientConnect() {
 	if (getnameinfo((struct sockaddr *) &s_address, sizeof(s_address), hostname, NI_MAXHOST, NULL, 0, NI_NUMERICSERV) !=0)
 		throw std::runtime_error("Error while getting hostname on new client.");
 
-	Client *client = new Client(ntohs(s_address.sin_port), fd, hostname);
+	Client *client = new Client(ntohs(s_address.sin_port), &(*_fds.end()), hostname);
 	_clients.push_back(client);
 
 	log("New client connected on port : " + ft_itoastr(client->getPort()));
@@ -98,20 +98,10 @@ void Server::_onClientConnect() {
 
 void Server::_onClientDisconnect(Client *client) {
 		client->quit();
-		log("New client connected on port : " + ft_itoastr(client->getPort());
 		_clients.erase(_findClient(client));
-		_pollfds.erase(_findFd(client));
+		_fds.erase(_findFd(*(client->getFd())));
+		log("New client connected on port : " + ft_itoastr(client->getPort()));
 		delete client;
-
-		_clients.erase(_client.begin());
-
-		for (pollfds_iterator it = _pollfds.begin(); it != _pollfds.end(); it++) {
-			if (it->fd != fd)
-				continue;
-			_pollfds.erase(it);
-			close(fd);
-			break;
-		}*/
 }
 
 client_it Server::_findClient(Client *client) 
@@ -134,7 +124,12 @@ poll_it Server::_findFd(pollfd fd)
 
 string		Server::getPassword()
 {
-	return this->_password;
+	return _password;
+}
+
+vector<Client *>	Server::getClients()
+{
+	return _clients;
 }
 
 void		Server::live()

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:56:45 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 18:22:38 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 19:04:07 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@
 
 enum ClientRole {
 	ANONYMOUS,
-	CONNECTED,
-	OPERATOR,
-	DISCONNECTED
+	CONNECTED
 };
 
 class Server; 
@@ -72,6 +70,7 @@ public:
 	bool 	isRegistered() const {return _role;}
 	void	join(Channel *channel);
 	void	welcomeMsg();
+	void	quit();
 };
 
 #endif
