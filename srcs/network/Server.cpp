@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:18:31 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/07 07:35:17 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 18:52:51 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,72 @@ void		Server::log(string message)
     strftime(buf, sizeof(buf), "%Y-%m-%d %X", &tstruct);
 
 	cout << PINK << buf << " | " << BLUE << message << DEFAULT << endl;
+}
+
+
+
+void Server::_onClientConnect() {
+	int fd;
+	sockaddr_in s_address = {};
+	socklen_t s_size = sizeof(s_address);
+
+	fd = accept(_sock_fd, (sockaddr *) &s_address, &s_size);
+	if (fd < 0)
+		throw Exception::accept_failure();
+
+	pollfd pollfd = {fd, POLLIN, 0};
+	_fds.push_back(pollfd);
+
+	char hostname[NI_MAXHOST];
+	if (getnameinfo((struct sockaddr *) &s_address, sizeof(s_address), hostname, NI_MAXHOST, NULL, 0, NI_NUMERICSERV) !=0)
+		throw std::runtime_error("Error while getting hostname on new client.");
+
+	Client *client = new Client(ntohs(s_address.sin_port), fd, hostname);
+	_clients.push_back(client);
+
+	log("New client connected on port : " + ft_itoastr(client->getPort()));
+}
+
+
+void Server::_onClientDisconnect(Client *client) {
+		client->quit();
+		log("New client connected on port : " + ft_itoastr(client->getPort());
+		_clients.erase(_findClient(client));
+		_pollfds.erase(_findFd(client));
+		delete client;
+
+		_clients.erase(_client.begin());
+
+		for (pollfds_iterator it = _pollfds.begin(); it != _pollfds.end(); it++) {
+			if (it->fd != fd)
+				continue;
+			_pollfds.erase(it);
+			close(fd);
+			break;
+		}*/
+}
+
+client_it Server::_findClient(Client *client) 
+{
+	for (client_it it = _clients.begin(); it != _clients.end(); it++) {
+		if ((*it) == client)
+			return (it);
+	}
+	return (_clients.end());
+}
+
+poll_it Server::_findFd(pollfd fd) 
+{
+	for (poll_it it = _fds.begin(); it != _fds.end(); it++) {
+		if ((*it).fd == fd.fd)
+			return (it);
+	}
+	return (_fds.end());
+}
+
+string		Server::getPassword()
+{
+	return this->_password;
 }
 
 void		Server::live()

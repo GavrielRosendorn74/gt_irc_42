@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:14:45 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/07 07:23:09 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 17:40:55 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ using namespace std;
 #define NO_SUCH_USER "ERROR: No such User"
 #define No_SUCH_COMMAND "ERROR: No such Command"
 #define POLL_ERROR "ERROR: Poll has broke."
+#define HOSTNAME_ERROR "ERROR: Failed to get hostname of client."
 
 class Exception
 {
@@ -109,6 +110,10 @@ class Exception
             const char *what() const throw() {return SELECT_FAILURE;}
         };
 
+		class hostname_failure : public exception
+        {
+            const char *what() const throw() {return HOSTNAME_ERROR;}
+        };
         class accept_failure : public exception
         {
             const char *what() const throw() {return ACCPET_FAILURE;}
