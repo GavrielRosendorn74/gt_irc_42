@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:56:45 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 21:37:43 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 22:31:45 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include "../Libraries.hpp"
 #include "components/Channel.hpp"
 #include "Server.hpp"
+
+# define MSG_SENT "Message sent properly"
+# define ERR_MSG_NOT_SENT "Error while sending message to client"
 
 enum ClientRole {
 	ANONYMOUS,
@@ -72,6 +75,8 @@ public:
 	void	join(Channel *channel);
 	void	welcomeMsg();
 	void	quit();
+
+	void	write(const std::string &message) const;
 };
 
 #endif

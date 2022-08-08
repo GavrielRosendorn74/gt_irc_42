@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 20:39:54 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/08 22:10:21 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 22:31:23 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,12 @@ void    Channel::kick(Client *client, Client *target, std::string &comment)
     rmvClient(client); /* remove client from channel first */
     //* REPLY() send message to channel -> client kicked + comment about it
     _server->log(CLIENTKICKED(client->getNickname()) + comment);
+}
+
+void    Channel::broadcast(std::string const &message)
+{
+    vector<Client*>::iterator   cit = _clients.begin();
+    for (; cit != _clients.end(); cit++)
+		(*cit)->write(message);
+    _server->log(MSGBROADCASTEDTOCHANNEL(message));
 }

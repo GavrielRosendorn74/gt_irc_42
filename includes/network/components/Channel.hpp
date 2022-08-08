@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:12:00 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 22:10:30 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 22:23:40 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define NEWCHANNELADMIN(client)	client + "  is now the new administrator of this channel"
 # define CLIENTKICKED(client)		client + " has been kicked from this channel : "
+# define MSGBROADCASTEDTOCHANNEL(messages) message + " has been broadcasted to the channel"
 
 using namespace std;
 
@@ -38,6 +39,8 @@ class Channel
 		void						rmvClient(Client *client);
 		void						addClient(Client *client);
 		void						kick(Client *client, Client *target, std::string &comment);
+
+		void 						broadcast(std::string const &message);
 
 
 

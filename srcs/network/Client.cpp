@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 17:53:48 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/08 21:38:49 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 22:31:31 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void    Client::join(Channel *channel)
 void    Client::welcomeMsg()
 {
     if (_username.empty() || _nickname.empty() || _realname.empty())
-        throw Exception::user_registration_args_error();
+        //* REPLY() error empty nick or realname or username
 
     _role = CONNECTED;
     //* display welcome message HERE
@@ -40,5 +40,23 @@ void    Client::welcomeMsg()
 
 void    Client::quit()
 {
-	
+    if (_channel) /* if current client has a channel */
+    {
+        //* BROADCAST MESSAGE to channel
+        _channel->rmvClient(this); /* remove client from this channel */
+    }
+    //* REPLY() no channel to quit
+    return;	
+}
+
+void    Client::write(const std::string &message) const
+{
+    std::string buff = message + "\r\n";
+	if (send(_pollfd->fd, buff.c_str(), buff.length(), 0) > 0)
+        _server->log(MSG_SENT);
+    else
+    {
+        _server->log(ERR_MSG_NOT_SENT);
+        //* REPLY() runtime error while sending message 
+    }
 }
