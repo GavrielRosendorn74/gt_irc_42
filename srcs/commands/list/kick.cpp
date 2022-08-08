@@ -6,7 +6,12 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:17 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/05 08:20:18 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 21:33:50 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../../includes/commands/Command.hpp"
+
+void Command::_kick(){
+	
+}

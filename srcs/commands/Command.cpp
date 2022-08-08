@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:37:56 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 20:18:09 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 21:39:09 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ Command::~Command(){}
 // RAW HAVE TO BE ONLY ONE LINE THERE ! No \n or \r please parse it before
 
 Command *Command::build(string raw)
+{
+	return (this);
+}
+
+void Command::execute()
 {
 
 }

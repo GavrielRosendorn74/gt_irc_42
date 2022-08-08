@@ -6,7 +6,13 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:36 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/05 08:20:37 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 21:34:26 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#include "../../../includes/commands/Command.hpp"
+
+void Command::_privmsg(){
+	
+}

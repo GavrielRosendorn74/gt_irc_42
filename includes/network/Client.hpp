@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:56:45 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 19:20:26 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 21:37:43 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ class Client
 private:
 	int			_port;
 	pollfd *	_pollfd;
-	std::string _nickname;
-	std::string _username;
-	std::string _realname;
-	std::string _hostname;
+	string _nickname;
+	string _username;
+	string _realname;
+	string _hostname;
 	
 	ClientRole	_role;
 

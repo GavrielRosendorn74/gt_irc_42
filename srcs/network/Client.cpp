@@ -6,13 +6,15 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 17:53:48 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/08 19:22:41 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 21:38:49 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/network/Client.hpp"
 
-Client::Client(int port, pollfd *fd, const std::string &hostname) : _port(port), _pollfd(fd), _hostname(hostname), _channel(nullptr) {}
+Client::Client(int port, pollfd *fd, const std::string &hostname) : _port(port), _pollfd(fd), _hostname(hostname), _channel(nullptr) {
+	_nickname = "";
+}
 
 Client::~Client() {}
 

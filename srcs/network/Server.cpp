@@ -6,12 +6,14 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:18:31 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 20:21:09 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 21:53:54 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/commands/Command.hpp"
 #include "../../includes/network/Server.hpp"
 #include "../../includes/Libraries.hpp"
+
 
 Server::Server(const string &port, const string &password)
 {
@@ -89,7 +91,7 @@ void Server::_onClientConnect() {
 	if (getnameinfo((struct sockaddr *) &s_address, sizeof(s_address), hostname, NI_MAXHOST, NULL, 0, NI_NUMERICSERV) !=0)
 		throw std::runtime_error("Error while getting hostname on new client.");
 
-	Client *client = new Client(ntohs(s_address.sin_port), &(*_fds.end()), hostname);
+	Client *client = new Client(ntohs(s_address.sin_port), &(*(_fds.end() - 1)), hostname);
 	_clients.push_back(client);
 
 	log("New client connected on port : " + ft_itoastr(client->getPort()));
@@ -141,28 +143,36 @@ vector<Client *>	Server::getClients()
 	return _clients;
 }
 
+void		Server::removeChannel(Channel *channel)
+{
+	
+}
+
 void		Server::_onClientMessage(Client *client)
 {
 	string message = _readMessageOfClient(client);
-	log(client->getNickname() + " has sent " + message);
+	// WARNING
+	log(client->getNickname() + " has sent " + message.substr(0, message.length() - 1));
 	
+	Command * command = new Command(this, client);
+	command->build(message)
+		->execute();
+	delete command;
 }
 
 string		Server::_readMessageOfClient(Client *client)
 {
 	std::string message;
 
-	char buffer[100];
-	bzero(buffer, 100);
+	char buffer[101];
+	bzero(buffer, 101);
 
-	while (!std::strstr(buffer, "\r\n")) {
+	while (!strstr(buffer, "\r\n")) {
 		bzero(buffer, 100);
-
 		if (recv(client->getFd()->fd, buffer, 100, 0) < 0) {
 			if (errno != EWOULDBLOCK)
 				throw std::runtime_error("Error while reading buffer from client.");
 		}
-
 		message.append(buffer);
 	}
 
