@@ -26,7 +26,11 @@ SRCS_CMD = Command.cpp
 
 SRCS_CMDS = help.cpp join.cpp kick.cpp nick.cpp notice.cpp part.cpp pass.cpp privmsg.cpp quit.cpp user.cpp who.cpp ping.cpp pong.cpp
 
-HEAD = server.hpp client.hpp
+SRCS_SC = Server.cpp Client.cpp
+
+HEAD = Server.hpp Client.hpp
+
+HEAD_UTILS = Utils.hpp Libraries.hpp Exceptions.hpp
 
 HEAD_COMPO = Channel.hpp
 
@@ -34,22 +38,26 @@ HEAD_CMD = Command.hpp ListCommand.hpp
 
 INCS = $(addprefix ./includes/network/, $(HEAD))
 
+INCS_UTILS = $(addprefix ./includes/, $(HEAD_UTILS))
+
 INCS_COMPO = $(addprefix .includes/network/components, $(HEAD_COMPO))
 
 INCS_CMD = $(addprefix ./includes/commands/, $(HEAD_CMD))
 
 OBJS = $(addprefix ./srcs/, $(SRCS:.cpp=.o))
 
+OBJS_SC = $(addprefix ./srcs/network/, $(SRCS_SC))
+
 OBJS_CMDS = $(addprefix ./srcs/commands/list/, $(SRCS_CMDS:.cpp=.o))
 
 OBJS_CMD = $(addprefix ./srcs/commands/, $(SRCS_CMD:.cpp=.o))
 
-$(NAME):	$(OBJS) $(OBJS_CMD) $(OBJS_CMDS)
-			$(CC) $(FLAGS) $(OBJS) $(OBJS_CMD) $(OBJS_CMDS) -o $(NAME)
+$(NAME):	$(OBJS) $(OBJS_SC) $(OBJS_CMD) $(OBJS_CMDS)
+			$(CC) $(FLAGS) $(OBJS) $(OBJS_SC) $(OBJS_CMD) $(OBJS_CMDS) -o $(NAME)
 
 all:	$(NAME)
 
-%.o:%.cpp	$(INCS) $(INCS_COMPO) $(INCS_CMD)
+%.o:%.cpp	$(INCS_UTILS) $(INCS) $(INCS_COMPO) $(INCS_CMD)
 			$(CC) $(FLAGS) -c $< -o $@
 
 clean:
