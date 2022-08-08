@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:18:31 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 21:53:54 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 21:55:38 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,6 @@ void		Server::live()
 			if (it->revents == POLLIN) {
 
 				if (it->fd == _sock_fd) {
-					log("Welcome to our server !");
 					_onClientConnect();
 					break;
 				}
