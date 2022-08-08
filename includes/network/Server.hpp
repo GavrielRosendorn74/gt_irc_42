@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:34:36 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 00:13:51 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 01:17:57 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ class Server
 		Client *				findClientByNickname(string nickname);
 		Client *				findClientByFd(pollfd fd);
 		client_it				findClient(Client *client);
-		channel_it				findChannel(Channel *client);
+		channel_it				findChannel(Channel *channel);
 		void					removeChannel(Channel *channel);
 		poll_it					findFd(pollfd fd);
 		vector<Client *>		getClients();

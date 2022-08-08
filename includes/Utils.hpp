@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 06:58:13 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 19:44:25 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 01:12:43 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ string ft_itoastr(int nbr);
 #define RPL_NOTICE(client, target, message)			":" + client + " NOTICE " + target + " :" + message
 #define RPL_QUIT(client, message)					":" + client + " QUIT :Quit: " + message
 #define RPL_KICK(client, channel, target, reason)	":" + client + " KICK " + channel + " " + target + " :" + reason
-#define RPL_MODE(client, channel, modes, args)		":" + client + " MODE " + channel + " " + modes + " " + args
+#define RPL_WHO(client)                             ":" + client
 
 #endif
