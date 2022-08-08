@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:25:40 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/05 09:36:19 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 18:35:04 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,9 @@ class Command
         Server *		_server;
 		string 			_prefix;
 		string			_command;
-		vector<string>	_args;
 		// FUNCTIONS
 		bool			_redirectExec(void);
 		// COMMANDS
-		void			_die();
 		void			_join();
 		void			_nick();
 		void			_mode();
@@ -52,6 +50,7 @@ class Command
 		void			_ping();
 		void			_pong();
 		void			_kick();
+		void			_pass();
 };
 
 #endif
