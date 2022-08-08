@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:25:40 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 18:35:04 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 19:01:49 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ class Command
 		void			_pong();
 		void			_kick();
 		void			_pass();
+		void			_who();
 };
 
 #endif
