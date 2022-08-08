@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 20:39:54 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/09 00:19:33 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 01:42:40 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,13 @@ void    Channel::kick(Client *client, Client *target, std::string &comment)
     _server->log(CLIENTKICKED(client->getNickname()) + comment);
 }
 
-void    Channel::broadcast(std::string const &message)
+void    Channel::broadcast(std::string const &message, Client *_to_exclude)
 {
     vector<Client*>::iterator   cit = _clients.begin();
     for (; cit != _clients.end(); cit++)
-		(*cit)->write(message);
+	{
+		if (_to_exclude != *cit)
+			(*cit)->write(message);
+	}
     _server->log(MSGBROADCASTEDTOCHANNEL(message));
 }

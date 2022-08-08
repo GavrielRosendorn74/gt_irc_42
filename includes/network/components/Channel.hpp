@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:12:00 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:03:54 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 01:43:01 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ class Channel
 		void						addClient(Client *client);
 		void						kick(Client *client, Client *target, std::string &comment);
 
-		void 						broadcast(std::string const &message);
+		void 						broadcast(std::string const &message, Client *_to_exclude);
 
 
 
