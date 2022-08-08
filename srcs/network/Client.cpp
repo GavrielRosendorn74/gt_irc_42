@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 17:53:48 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/08 22:31:31 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 23:03:20 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,14 @@ void    Client::write(const std::string &message) const
         _server->log(ERR_MSG_NOT_SENT);
         //* REPLY() runtime error while sending message 
     }
+}
+
+std::string Client::prefix() const 
+{
+    return _nickname + (_username.empty() ? "" : "!" + _username) + (_hostname.empty() ? "" : "@" + _hostname);
+}
+
+void    Client::reply(const std::string &reply) const
+{
+    this->write(":" + prefix() + reply);
 }

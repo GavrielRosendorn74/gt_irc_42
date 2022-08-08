@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:56:45 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 22:31:45 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 23:03:15 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ public:
 	void	welcomeMsg();
 	void	quit();
 
+	std::string	prefix() const ;
 	void	write(const std::string &message) const;
+	void	reply(const std::string &reply) const;
 };
 
 #endif
