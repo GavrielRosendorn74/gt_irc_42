@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:15 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:02:41 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 01:27:33 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void Command::_join()
 		return;
 	}
 
-	channel = _server->getChannel(name);
+	channel = _server->findChannelByName(name);
 	if (!channel)
-		channel = _server->createChannel(name, password, _client);
+		channel = _server->createChannel(name, _client);
 
 	if (channel->getMaxClients() > 0 && channel->getNumClients() >= channel->getMaxClients()){
 		_client->reply(ERR_CHANNELISFULL(_client->getNickname(), name));
