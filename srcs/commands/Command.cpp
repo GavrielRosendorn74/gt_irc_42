@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:37:56 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 00:41:32 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 01:23:33 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ bool isValidCmd(std::string command)
 	if (command == JOIN || command == NICK || command == PART ||
 		command == PRIVMSG || command == NOTICE || command == QUIT ||
 		command == USER || command == KICK || command == PASS || command == WHO ||
-		command == PING || command == PONG)
+		command == PING || command == PONG || command == HELP)
 		return true;
 	return false;
 }
@@ -112,6 +112,8 @@ bool Command::_redirectExec(void)
 	if (isValidCmd(_command))
 	{
 		if (_command == JOIN)
+			_join();
+		if (_command == HELP)
 			_join();
 		if (_command == NICK)
 			_nick();
