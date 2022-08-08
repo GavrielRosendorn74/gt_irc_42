@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:34:36 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 19:10:45 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:14:22 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ class Server
 		void					_onClientDisconnect(Client *client);
 		void 					_onClientMessage(Client *client);
 		std::string				_readMessageOfClient(Client *client);
-		vector<Client *>		getClients();
 	public:
 		// CONSTRUCTORS
 		Server(const string &port, const string &password);
 		~Server();
 		// FUNCTIONS
 		string		getPassword();
+		vector<Client *>		getClients();
 		void		log(string message);
 		Server *	launch();
 		void		live();
