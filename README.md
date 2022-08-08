@@ -15,6 +15,35 @@ La norme RCF a pour but de poser les règles de communication entre les serveurs
 Ainsi, cette norme s'organise autour d'un set de commandes permettentant d'effectuer des actions sur le serveur.
 A chacune de ces commandes le serveur IRC devra agir en conséquant puis faire remonter le succès ou pas de la réalistation de la commande via des codes d'erreur (ERR_X) ou des codes réponse (RPL_X).
 
+## To do list
+
+_ Terminer la connexion client
+_ Deconnexion client
+_ Spliter de commande
+_ Parser de commande
+_ Client
+	- > Reponse
+_ Implementer les commandes 
+	_ Auth
+		- USER 
+		- NICK
+		- PASS 
+		_ DIE
+		_ QUIT
+	_ Server
+		_ WHO 
+		_ LIST
+		_ HELP
+	_ Chat
+		_ PRIVMSG
+		_ NOTICE
+		_ JOIN
+		_ WHO (D)
+		_ KICK
+		_ PART
+
+
+
 ## Notre organisation
 
 Une fois la norme RCF décortiqué deux grandes parties dans ce projet sont mises en evidence.
