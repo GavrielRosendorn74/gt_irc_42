@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 18:28:14 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/08 23:27:14 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 23:31:25 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void    Command::_nick()
     if (!(_args.empty()))
     {
         std::string nick = _args[0];
-        if (!(_server->findByClientNickname(nick)))
+        if (!(_server->findClientByNickname(nick)))
         {
             _client->setNickname(_args[0]);
             _client->welcomeMsg();
