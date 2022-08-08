@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:18:31 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 00:16:29 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 01:26:29 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,15 @@ channel_it Server::findChannel(Channel *channel)
 			return (it);
 	}
 	return (_channels.end());
+}
+
+Channel *	Server::findChannelByName(string name)
+{
+	for (channel_it it = _channels.begin(); it != _channels.end(); it++) {
+		if ((*it)->getName() == name)
+			return (*it);
+	}
+	return (NULL);
 }
 
 

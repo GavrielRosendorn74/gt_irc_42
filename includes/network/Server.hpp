@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:34:36 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:17:57 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 01:25:12 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ class Server
 		string					getPassword();
 		Client *				findClientByNickname(string nickname);
 		Client *				findClientByFd(pollfd fd);
+		Channel *				findChannelByName(string name);
 		client_it				findClient(Client *client);
 		channel_it				findChannel(Channel *channel);
 		void					removeChannel(Channel *channel);
