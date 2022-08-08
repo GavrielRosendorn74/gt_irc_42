@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:25:40 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 19:01:49 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/08 22:38:14 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,16 @@
 
 using namespace std;
 
+typedef vector<string>::iterator str_it;
+
+
 class Command
 {
-
     public:
         Command(Server *server, Client *client);
 		Command *build(string raw);
 		void execute();
+		void printParsing();
         ~Command();
     private:
 		vector<string>	_args;

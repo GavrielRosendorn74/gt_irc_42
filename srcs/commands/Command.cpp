@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:37:56 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 22:10:58 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 22:52:25 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ Command::~Command(){}
 
 Command *Command::build(string raw)
 {
+	_command = "";
 	int index = 0;
 	// SKIP SPACES
 	while (raw[index] == ' ') index++;
@@ -35,17 +36,66 @@ Command *Command::build(string raw)
 			raw = raw.substr(raw.find(' '));
 		} else {
 			_prefix = raw;
+			return (this);
 		}
 	} else _prefix = "";
-	
-	_command = "";
-	_args.push_back("");
+	// SKIP SPACES
+	index = 0;
+	while (raw[index] == ' ') index++;
+	raw = raw.substr(index);
+	// GET COMMAND
+	if (raw.find(' ') != string::npos) {
+		_command = raw.substr(0, raw.find(' '));
+		raw = raw.substr(raw.find(' '));
+	} else {
+		_command = raw;
+		return (this);
+	}
+	_server->log("\n\n" + raw);
+	// GET ARGS
+	while (1)
+	{
+		// SKIP SPACES
+		index = 0;
+		while (raw[index] == ' ') index++;
+		raw = raw.substr(index);
+		// SECURITY EMPTY ARG
+		if (raw.length() == 0)
+			break ;
+		// VERIFY IF FINAL ARG
+		if (raw[0] == ':')
+		{
+			_args.push_back(raw.substr(1));
+			break ;
+		// IF NOT LAST ARG
+		} else if (raw.find(' ') != string::npos) {
+			_args.push_back(raw.substr(0, raw.find(' ')));
+			raw = raw.substr(raw.find(' '));
+		// IF LAST ARG
+		} else {
+			_args.push_back(raw);
+			break ;
+		}
+	}
 	return (this);
+}
+
+void Command::printParsing()
+{
+	_server->log("PREFIX : " + _prefix);
+	_server->log("COMMAND : " + _command);
+	int index = 0;
+	for (str_it it = _args.begin(); it != _args.end(); it++) {
+		_server->log("ARGS [" + ft_itoastr(index) +  "] : " + (*it));
+		index ++;
+	}
 }
 
 void Command::execute()
 {
-
+	printParsing();
+	if (!_redirectExec())
+		_server->log(_command + " is not a recognized command.");
 }
 
 bool isValidCmd(std::string command)

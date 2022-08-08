@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:18:31 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 21:55:38 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/08 23:02:40 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,11 +153,18 @@ void		Server::_onClientMessage(Client *client)
 	string message = _readMessageOfClient(client);
 	// WARNING
 	log(client->getNickname() + " has sent " + message.substr(0, message.length() - 1));
-	
-	Command * command = new Command(this, client);
-	command->build(message)
-		->execute();
-	delete command;
+	// BREAK IF MANY LINES
+	while (message.find('\n') != string::npos || message.find('\r') != string::npos)
+	{
+		size_t i = (message.find('\n') != string::npos) ? message.find('\n') : message.find('\r');
+		if ((message.find('\n') != string::npos && message.find('\r') != string::npos) && message.find('\r') < message.find('\n'))
+			i = message.find('\r');
+		Command * command = new Command(this, client);
+		command->build(message)
+			->execute();
+		delete command;	
+		message = message.substr(i);
+	}
 }
 
 string		Server::_readMessageOfClient(Client *client)
