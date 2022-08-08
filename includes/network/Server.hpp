@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:34:36 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:25:12 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 01:28:33 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ class Server
 		Client *				findClientByNickname(string nickname);
 		Client *				findClientByFd(pollfd fd);
 		Channel *				findChannelByName(string name);
+		Channel *				createChannel(string name, Client *client);
 		client_it				findClient(Client *client);
 		channel_it				findChannel(Channel *channel);
 		void					removeChannel(Channel *channel);
