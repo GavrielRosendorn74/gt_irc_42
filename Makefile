@@ -28,6 +28,8 @@ SRCS_CMDS = help.cpp join.cpp kick.cpp nick.cpp notice.cpp part.cpp pass.cpp pri
 
 SRCS_SC = Server.cpp Client.cpp
 
+SRCS_CHAN = Channel.cpp
+
 HEAD = Server.hpp Client.hpp
 
 HEAD_UTILS = Utils.hpp Libraries.hpp Exceptions.hpp
@@ -48,12 +50,14 @@ OBJS = $(addprefix ./srcs/, $(SRCS:.cpp=.o))
 
 OBJS_SC = $(addprefix ./srcs/network/, $(SRCS_SC))
 
+OBJS_CHAN = $(addprefix ./srcs/network/components/, $(SRCS_CHAN))
+
 OBJS_CMDS = $(addprefix ./srcs/commands/list/, $(SRCS_CMDS:.cpp=.o))
 
 OBJS_CMD = $(addprefix ./srcs/commands/, $(SRCS_CMD:.cpp=.o))
 
-$(NAME):	$(OBJS) $(OBJS_SC) $(OBJS_CMD) $(OBJS_CMDS)
-			$(CC) $(FLAGS) $(OBJS) $(OBJS_SC) $(OBJS_CMD) $(OBJS_CMDS) -o $(NAME)
+$(NAME):	$(OBJS) $(OBJS_SC) $(OBJS_CHAN) $(OBJS_CMD) $(OBJS_CMDS)
+			$(CC) $(FLAGS) $(OBJS) $(OBJS_SC) $(OBJS_CHAN) $(OBJS_CMD) $(OBJS_CMDS) -o $(NAME)
 
 all:	$(NAME)
 
