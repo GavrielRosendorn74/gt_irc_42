@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:56:45 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/08 23:03:15 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 01:53:04 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,8 @@ private:
 	string _username;
 	string _realname;
 	string _hostname;
-	
 	ClientRole	_role;
-
-	Server *	_server;
-
-	Channel *	_channel;
-	
+	Server *	_server;	
 public:
 	/* Constructor & destructor */
 	Client(int port, pollfd *fd, const std::string &hostname);
@@ -60,15 +55,12 @@ public:
 	std::string getRealname() const {return _realname;}
 	std::string	getHostname() const {return _hostname;}
 
-	Channel *getChannel() const {return _channel;}
-
 	/* Setter */
 	void	setNickname(const std::string &nick) {_nickname = nick;}
 	void	setUsername(const std::string &username) {_username = username;}
 	void	setRealname(const std::string &realname) {_realname = realname;}
 	void	setHostname(const std::string &host) {_hostname = host;}
 	void	setRole(ClientRole role) {_role = role;}
-	void	setChannel(Channel *channel) {_channel = channel;}
 
 	/* other functions */
 	bool 	isRegistered() const {return _role;}
