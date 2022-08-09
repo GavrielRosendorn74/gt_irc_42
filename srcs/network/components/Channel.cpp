@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 20:39:54 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/09 17:01:00 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:11:20 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void    Channel::kick(Client *client, Client *target, std::string &comment)
         rmvClient(target); /* remove client from channel first */
         //* REPLY() send message to channel -> client kicked + comment about it
         client->reply(RPL_KICK(client->prefix(), this->_name, target->getNickname(), comment));
-        _server->log(CLIENTKICKED(client->getNickname()) + comment);
+        _server->log(CLIENTKICKED(target->getNickname()) + comment);
     }
 }
 
