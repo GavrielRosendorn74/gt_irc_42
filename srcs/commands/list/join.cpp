@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:15 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 02:19:26 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 02:26:40 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void Command::_join()
 {
     if (_args.empty()) {
-		_client->reply(ERR_NEEDMOREPARAMS(_client->getNickname(), "PASS"));
+		_client->reply(ERR_NEEDMOREPARAMS(_client->getNickname(), "JOIN"));
 		return;
 	}
 

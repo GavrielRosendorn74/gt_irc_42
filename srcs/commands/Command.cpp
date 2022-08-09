@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:37:56 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:23:33 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 02:27:04 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ bool Command::_redirectExec(void)
 		if (_command == JOIN)
 			_join();
 		if (_command == HELP)
-			_join();
+			_help();
 		if (_command == NICK)
 			_nick();
 		if (_command == PART)
