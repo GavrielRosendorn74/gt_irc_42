@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 17:53:48 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/09 07:45:29 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 09:36:43 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void    Client::join(Channel *channel)
 
 void    Client::welcomeMsg()
 {
+	_server->log("WELCOME ENTERED");
     if (_username.empty() || _nickname.empty() || _realname.empty()) {
 		return ;
 	}

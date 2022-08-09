@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:36 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:50:42 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 09:29:49 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,13 @@ void Command::_privmsg(){
 	}
 
 	std::string target = _args.at(0);
-	std::string message;
-
-	for (std::vector<std::string>::iterator it = _args.begin() + 1; it != _args.end(); it++) {
-		message.append(*it + " ");
-	}
+	std::string message = _args.at(1);
 
 	message = message.at(0) == ':' ? message.substr(1) : message;
 
 	if (target.at(0) == '#') {
 
-		Channel *channel = _server->findChannelByName(target.substr(1));
+		Channel *channel = _server->findChannelByName(target);
 		
 		if (!channel) {
 			_client->reply(ERR_NOSUCHCHANNEL(_client->getNickname(), target));

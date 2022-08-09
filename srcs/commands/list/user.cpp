@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:40 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 07:44:26 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 09:35:01 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void    Command::_user()
 {
     _server->log("/USER exec function called");
-	if (_client->getRole() == ANONYMOUS_WITH_GOOD_PASSWORD)
+	if (_client->getRole() == ANONYMOUS_WITH_GOOD_PASSWORD || _client->isRegistered())
     {
         if (_args.size() >= 4)
         {

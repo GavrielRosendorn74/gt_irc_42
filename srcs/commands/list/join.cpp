@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:15 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 09:08:20 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 09:18:38 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void Command::_join()
 	}
 
 	_client->join(channel);	
-	_client->write(RPL_NAMREPLY(_client->getNickname(), channel->getName(), channel->getClientsStr().c_str()));
+	_client->write(RPL_NAMREPLY(_client->getNickname(), channel->getName(), channel->getClientsStr()));
 	_client->write(RPL_ENDOFNAMES(_client->getNickname(), channel->getName()));
 }

@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 06:58:13 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 09:05:55 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 09:18:31 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ string ft_itoastr(int nbr);
 
 // NUMERIC
 #define RPL_WELCOME(client)						"001 " + client + " :Welcome " + client + " to the ft_irc network"
-#define RPL_NAMREPLY(client, channel, users)	"353 " + client + " = #" + channel + " :" + users
-#define RPL_ENDOFNAMES(client, channel)			"366 " + client + " #" + channel + " :End of /NAMES list."
+#define RPL_NAMREPLY(client, channel, users)	"353 " + client + " = " + channel + " :" + users
+#define RPL_ENDOFNAMES(client, channel)			"366 " + client + " " + channel + " :End of /NAMES list."
 #define RPL_JOIN(client, channel)					":" + client + " JOIN :" + channel
 #define RPL_PART(client, channel)					":" + client + " PART :" + channel
 #define RPL_PING(client, token)						":" + client + " PONG :" + token
