@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 20:39:54 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/09 15:54:40 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:01:00 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,6 @@ void    Channel::rmvClient(Client *client)
             _server->log(NEWCHANNELADMIN(_admin->getNickname())); /* log message */
         }
 
-    }
-    else 
-    {
-        _server->removeChannel(this); /* remove channel from server */
-        free(this); /* free current channel */
     }
     return ;
 }
