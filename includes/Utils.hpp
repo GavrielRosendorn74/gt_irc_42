@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 06:58:13 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 09:18:31 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:32:51 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ string ft_itoastr(int nbr);
 #define ERR_CHANOPRIVSNEEDED(client, channel)			"482 " + client + " " + channel + " :You're not channel operator"
 #define ERR_CHANNELISFULL(client, channel)				"471 " + client + " " + channel + " :Cannot join channel (+l)"
 #define ERR_CANNOTSENDTOCHAN(client, channel)			"404 " + client + " " + channel + " :Cannot send to channel"
+#define ERR_USERONCHANNEL(client, channel)              "443 " + client + " " + channel + " :is  already on channel"
 
 // NUMERIC
 #define RPL_WELCOME(client)						"001 " + client + " :Welcome " + client + " to the ft_irc network"

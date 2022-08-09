@@ -76,4 +76,6 @@ fclean:	clean
 		@$(RM) ircserv
 		@printf "$(ERASE)$(RED)-> Executable cleaned$(END)\n"
 
-re: all clean fclean re
+re: fclean all clean
+
+.PHONY: all clean fclean re

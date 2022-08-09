@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:15 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 09:18:38 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:34:06 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ void Command::_join()
 	if (channel->getMaxClients() > 0 && channel->getNumClients() >= channel->getMaxClients()){
 		_client->reply(ERR_CHANNELISFULL(_client->getNickname(), name));
 		return;
+	}
+
+	if (channel->isCLientInChannel(_client))
+	{
+		_client->reply(ERR_USERONCHANNEL(_client->getNickname(), channel->getName()));
+		return ;
 	}
 
 	_client->join(channel);	
