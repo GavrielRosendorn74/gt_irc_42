@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:12:00 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 08:19:44 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 15:15:12 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ class Client;
 
 class Channel
 {
+
+	typedef vector<Client *>::iterator client_it;
+
 	public:
 		Channel(const std::string &name, Client *admin);
 		~Channel();
@@ -49,6 +52,8 @@ class Channel
 		void 						broadcast(std::string const &message, Client *_to_exclude);
 
 		bool						isCLientInChannel(Client *client);
+
+		client_it  					findClient(Client *client);
 
 
 

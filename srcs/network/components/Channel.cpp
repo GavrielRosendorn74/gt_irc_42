@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 20:39:54 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/09 13:51:51 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 15:21:56 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,34 @@ string	Channel::getClientsStr()
 	return (res);
 }
 
+client_it  Channel::findClient(Client *client)
+{
+    for (client_it it = _clients.begin(); it != _clients.end(); it++) {
+		if ((*it)->getNickname() == client->getNickname())
+			return (it);
+	}
+	return (_clients.end());
+}
+
 void    Channel::rmvClient(Client *client) 
 {
-    _clients.erase(std::remove(_clients.begin(), _clients.end(), client), _clients.end());
+    // _clients.erase(std::remove(_clients.begin(), _clients.end(), client), _clients.end());
+    _clients.erase(findClient(client));
     if (!(_clients.empty()))
     {
         /* if current client is admin -> set next client as admin */
         if (client == _admin)
         {
             _admin = _clients.begin().operator*(); /* set first client in channel clients as new admin  */
-            //* REPLY() send message to channel -> new admin 
             _server->log(NEWCHANNELADMIN(_admin->getNickname())); /* log message */
         }
 
     }
-    _server->removeChannel(this); /* remove channel from server */
-    free(this); /* free current channel */
+    else 
+    {
+        _server->removeChannel(this); /* remove channel from server */
+        free(this); /* free current channel */
+    }
     return ;
 }
 
