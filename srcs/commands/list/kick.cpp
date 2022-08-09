@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   kick.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:17 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 02:05:15 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 02:17:47 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ void Command::_kick()
 	Client *dest = _server->findClientByNickname(target);
 	if (!dest) {
 		_client->reply(ERR_NOSUCHNICK(_client->getNickname(), target));
-		return;
-	}
-
-	if (!dest->getChannel() || dest->getChannel() != channel) {
-		_client->reply(ERR_USERNOTINCHANNEL(_client->getNickname(), dest->getNickname(), name));
 		return;
 	}
 
