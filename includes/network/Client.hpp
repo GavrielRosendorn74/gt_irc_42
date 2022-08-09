@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 04:56:45 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:53:04 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 07:33:04 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 enum ClientRole {
 	ANONYMOUS,
+	ANONYMOUS_WITH_GOOD_PASSWORD,
 	CONNECTED
 };
 
@@ -63,7 +64,8 @@ public:
 	void	setRole(ClientRole role) {_role = role;}
 
 	/* other functions */
-	bool 	isRegistered() const {return _role;}
+	ClientRole 	getRole() const {return _role;}
+	bool 	isRegistered() const {return _role == CONNECTED;}
 	void	join(Channel *channel);
 	void	welcomeMsg();
 	void	quit();

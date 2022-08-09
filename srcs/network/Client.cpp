@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 17:53:48 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/09 02:22:16 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 07:45:29 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ void    Client::welcomeMsg()
 		return ;
 	}
         //* REPLY() error empty nick or realname or username
-
+	
     _role = CONNECTED;
+	_server->log("WELCOME CONNECTED");
+	write(RPL_WELCOME(_nickname));
     //* display welcome message HERE
     //* user now know as "NEW NICKNAME"
 }
