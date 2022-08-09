@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 20:39:54 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/09 01:42:40 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 02:18:38 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void    Channel::addClient(Client *client) {_clients.push_back(client);}
 void    Channel::rmvClient(Client *client) 
 {
     _clients.erase(std::remove(_clients.begin(), _clients.end(), client), _clients.end());
-	client->setChannel(nullptr); /* del current channel from client object */
     if (!(_clients.empty()))
     {
         /* if current client is admin -> set next client as admin */
