@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:18:31 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 10:18:15 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 12:07:01 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,8 +262,10 @@ void		Server::live()
 					_onClientConnect();
 					break;
 				}
-
-				_onClientMessage(findClientByFd(*it));
+				if (findClientByFd(*it))
+					_onClientMessage(findClientByFd(*it));
+				else 
+					log("WARNING HAS NOT ");
 			}
 		}
 	}
