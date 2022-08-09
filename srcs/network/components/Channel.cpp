@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 20:39:54 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/09 09:31:15 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 10:48:48 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,14 @@ void    Channel::kick(Client *client, Client *target, std::string &comment)
 void    Channel::broadcast(std::string const &message, Client *_to_exclude)
 {
 	(void) _to_exclude;
+	printf("I WAS HERE BEFORE THE OF THE CRASH\n");
     vector<Client*>::iterator   cit = _clients.begin();
     for (; cit != _clients.end(); cit++)
 	{
-		//if (_to_exclude != *cit)
-			(*cit)->write(message);
+		printf("I WAS HERE BEFORE THE CRASH\n");
+		if (_to_exclude != *cit)
+			(*cit)->write(message);//RPL_PRIVMSG(_to_exclude->getNickname(), _name, message));
+		printf("I WAS HERE BEFORE THE CRASH AND IT WAS NOT NO BAD\n");
 	}
     _server->log(MSGBROADCASTEDTOCHANNEL(message));
 }
