@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:18:31 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:30:41 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 10:18:15 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void Server::_onClientConnect() {
 	Client *client = new Client(ntohs(s_address.sin_port), &(*(_fds.end() - 1)), hostname);
 	_clients.push_back(client);
 
-	log("New client connected on port : " + ft_itoastr(client->getPort()));
+	log("New client connected on port : " + ft_itoastr(client->getPort()) + " FD => " + ft_itoastr(client->getFd()->fd));
 }
 
 
