@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:36 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 13:49:05 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 13:53:54 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,14 @@ void Command::_privmsg(){
 		channel->broadcast(RPL_PRIVMSG(_client->prefix(), target, message), _client);
 		return;
 	}
+	else {
+		Client *dest = _server->findClientByNickname(target);
+		if (!dest) {
+			_client->reply(ERR_NOSUCHNICK(_client->getNickname(), target));
+			return;
+		}
 
-	Client *dest = _server->findClientByNickname(target);
-	if (!dest) {
-		_client->reply(ERR_NOSUCHNICK(_client->getNickname(), target));
-		return;
+		dest->write(RPL_PRIVMSG(_client->prefix(), target, message));
 	}
-
-	dest->write(RPL_PRIVMSG(_client->prefix(), target, message));
 
 }

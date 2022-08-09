@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   notice.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:22 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:58:23 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:56:44 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,13 @@ void Command::_notice()
 		channel->broadcast(RPL_NOTICE(_client->prefix(), target, message), _client);
 		return;
 	}
+	else {
+		Client *dest = _server->findClientByNickname(target);
+		if (!dest) {
+			_client->reply(ERR_NOSUCHNICK(_client->getNickname(), target));
+			return;
+		}
 
-	Client *dest = _server->findClientByNickname(target);
-	if (!dest) {
-		_client->reply(ERR_NOSUCHNICK(_client->getNickname(), target));
-		return;
+		dest->write(RPL_NOTICE(_client->prefix(), target, message));
 	}
-
-	dest->write(RPL_NOTICE(_client->prefix(), target, message));
 }
