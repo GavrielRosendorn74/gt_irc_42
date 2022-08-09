@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:18:31 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 13:09:10 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 13:09:54 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,8 @@ Channel *	Server::createChannel(string name, Client *client)
 Client * Server::findClientByFd(pollfd fd) 
 {
 	for (client_it it = _clients.begin(); it != _clients.end(); it++) {
-		// if ((*it)->getFd()->fd == fd.fd)
-		// 	return (*it);
+		if ((*it)->getFd()->fd == fd.fd)
+			return (*it);
 	}
 	return (NULL);
 }
