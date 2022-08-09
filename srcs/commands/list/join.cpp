@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:15 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:27:33 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 02:19:26 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void Command::_join()
 	std::string name = _args[0];
 	std::string password = _args.size() > 1 ? _args[1] : "";
 
-	Channel *channel = _client->getChannel();
+	Channel *channel = _server->findChannelByName(name);
 	if (channel) {
 		_client->reply(ERR_TOOMANYCHANNELS(_client->getNickname(), name));
 		return;
