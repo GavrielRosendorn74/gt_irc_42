@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   kick.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:17 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 02:17:47 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 15:48:51 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void Command::_kick()
 		return;
 	}
 
-	std::string name = _args[0];
-	std::string target = _args[1];
+	std::string chanName = _args[0]; // channel name
+	std::string target = _args[1]; // clienrt to kick out 
 	std::string comment = "No reason specified.";
 
 	if (_args.size() >= 3 && (_args[2][0] != ':' || _args[2].size() > 1)) {
@@ -29,14 +29,14 @@ void Command::_kick()
 			comment.append(*it + " ");
 	}
 
-	Channel *channel = _server->findChannelByName(target.substr(1));;
-	if (!channel || channel->getName() != name) {
-		_client->reply(ERR_NOTONCHANNEL(_client->getNickname(), name));
+	Channel *channel = _server->findChannelByName(chanName.substr(0)); // fin channel without #
+	if (!channel || channel->getName() != chanName) {
+		_client->reply(ERR_NOTONCHANNEL(_client->getNickname(), chanName));
 		return;
 	}
 
 	if (channel->getAdmin() != _client) {
-		_client->reply(ERR_CHANOPRIVSNEEDED(_client->getNickname(), name));
+		_client->reply(ERR_CHANOPRIVSNEEDED(_client->getNickname(), chanName));
 		return;
 	}
 
