@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:12:00 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 15:15:12 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 17:06:31 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ class Channel
 		string				getClientsStr();
 
 		Client						*getAdmin();
+		void						setAdmin(Client *client){ _admin = client; }
 
 		size_t		getMaxClients() const { return this->_len;};
 		void		setMaxClients(size_t len) { this->_len = len;};

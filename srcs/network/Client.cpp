@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 17:53:48 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/09 15:07:59 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 17:08:21 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ Client::~Client() {}
 
 void    Client::join(Channel *channel)
 {
+	if (channel->getClients()->empty())
+		channel->setAdmin(this);
+		
     channel->addClient(this);
 
     //* get channe users function -> store it in a vector  */
