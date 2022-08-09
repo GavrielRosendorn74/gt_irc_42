@@ -68,6 +68,7 @@ clean:
 		@$(RM) srcs/*.o
 		@$(RM) srcs/commands/*.o
 		@$(RM) srcs/commands/list/*.o
+		@$(RM) ircserv.dSYM
 		@$(RM) *.o
 		@printf "$(ERASE)$(RED)-> All files *.o cleaned$(END)\n"
 
