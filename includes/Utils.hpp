@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 06:58:13 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:59:15 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 08:37:16 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ string ft_itoastr(int nbr);
 
 // NUMERIC
 #define RPL_WELCOME(client)						"001 " + client + " :Welcome " + client + " to the ft_irc network"
-#define RPL_NAMREPLY(client, channel, users)	"353 " + client + " = " + channel + " :" + users
+#define RPL_NAMREPLY(client, channel, users)	"353 " + client + " " + channel + " :" + users
 #define RPL_ENDOFNAMES(client, channel)			"366 " + client + " " + channel + " :End of /NAMES list."
 #define RPL_JOIN(client, channel)					":" + client + " JOIN :" + channel
 #define RPL_PART(client, channel)					":" + client + " PART :" + channel
@@ -48,5 +48,6 @@ string ft_itoastr(int nbr);
 #define RPL_QUIT(client, message)					":" + client + " QUIT :Quit: " + message
 #define RPL_KICK(client, channel, target, reason)	":" + client + " KICK " + channel + " " + target + " :" + reason
 #define RPL_WHO(client)                             ":" + client
+#define RPL_NOTOPIC(client, channel)             "331 " + client + " " + channel + " :No topic is set"
 
 #endif

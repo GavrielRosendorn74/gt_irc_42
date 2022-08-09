@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 20:39:54 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/09 02:25:38 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 08:34:42 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@ std::vector<Client*>    *Channel::getClients() {return &_clients;} /* return all
 Client *Channel::getAdmin() {return _admin;} /* get the current channel admin */
 
 void    Channel::addClient(Client *client) {_clients.push_back(client);}
+
+string	Channel::getClientsStr()
+{
+	string res = "";
+	vector<Client*>::iterator cit = this->_clients.begin();
+    for (; cit != _clients.end(); cit++)
+    {
+		res += "+" + (*cit)->getNickname() + " ";
+    }
+	return (res);
+}
 
 void    Channel::rmvClient(Client *client) 
 {

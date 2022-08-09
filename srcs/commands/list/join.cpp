@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:15 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 02:26:40 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 08:32:19 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,7 @@ void Command::_join()
 	std::string password = _args.size() > 1 ? _args[1] : "";
 
 	Channel *channel = _server->findChannelByName(name);
-	if (channel) {
-		_client->reply(ERR_TOOMANYCHANNELS(_client->getNickname(), name));
-		return;
-	}
 
-	channel = _server->findChannelByName(name);
 	if (!channel)
 		channel = _server->createChannel(name, _client);
 
@@ -39,4 +34,6 @@ void Command::_join()
 	}
 
 	_client->join(channel);	
+	_client->write(RPL_NAMREPLY(_client->getNickname(), channel->getName(), channel->getClientsStr()));
+	_client->write(RPL_ENDOFNAMES(_client->getNickname(), channel->getName()));
 }

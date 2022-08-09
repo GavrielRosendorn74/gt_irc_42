@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:12:00 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 02:23:26 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 08:19:44 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ class Channel
 		Channel(const std::string &name, Client *admin);
 		~Channel();
 
-		std::string					getName();
-		std::vector<Client*>		*getClients();
+		string				getName();
+		vector<Client*>		*getClients();
+		string				getClientsStr();
+
 		Client						*getAdmin();
 
 		size_t		getMaxClients() const { return this->_len;};
