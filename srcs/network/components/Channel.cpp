@@ -6,7 +6,7 @@
 /*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 20:39:54 by tanguy            #+#    #+#             */
-/*   Updated: 2022/08/09 08:34:42 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 08:57:30 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ string	Channel::getClientsStr()
 	vector<Client*>::iterator cit = this->_clients.begin();
     for (; cit != _clients.end(); cit++)
     {
-		res += "+" + (*cit)->getNickname() + " ";
+		res += ((*cit)->getNickname() == _admin->getNickname() ? "@" : "+") + (*cit)->getNickname() + " ";
     }
+	res.substr(0, res.length() - 1);
 	return (res);
 }
 
