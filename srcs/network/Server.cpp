@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:18:31 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 13:09:54 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 13:34:53 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ void Server::_onClientConnect() {
 	if (getnameinfo((struct sockaddr *) &s_address, sizeof(s_address), hostname, NI_MAXHOST, NULL, 0, NI_NUMERICSERV) !=0)
 		throw std::runtime_error("Error while getting hostname on new client.");
 
-	Client *client = new Client(ntohs(s_address.sin_port), &(*(_fds.end() - 1)), hostname);
+	Client *client = new Client(ntohs(s_address.sin_port), _fds.back(), hostname);
 	_clients.push_back(client);
 
-	log("New client connected on port : " + ft_itoastr(client->getPort()) + " FD => " + ft_itoastr(client->getFd()->fd));
+	log("New client connected on port : " + ft_itoastr(client->getPort()) + " FD => " + ft_itoastr(client->getFd().fd));
 }
 
 
@@ -102,7 +102,7 @@ void Server::_onClientDisconnect(Client *client) {
 		log("CLIENT DISCONNECT");
 		client->quit();
 		_clients.erase(findClient(client));
-		_fds.erase(findFd(*(client->getFd())));
+		_fds.erase(findFd(client->getFd()));
 		log("Client connected on port " + ft_itoastr(client->getPort()) + " left !");
 		delete client;
 }
@@ -146,7 +146,8 @@ Channel *	Server::createChannel(string name, Client *client)
 Client * Server::findClientByFd(pollfd fd) 
 {
 	for (client_it it = _clients.begin(); it != _clients.end(); it++) {
-		if ((*it)->getFd()->fd == fd.fd)
+		log("HOLA CLIENT FD : " + ft_itoastr((*it)->getFd().fd));
+		if ((*it)->getFd().fd == fd.fd)
 			return (*it);
 	}
 	return (NULL);
@@ -220,7 +221,7 @@ string		Server::_readMessageOfClient(Client *client)
 
 	while (!strstr(buffer, "\r\n")) {
 		bzero(buffer, 100);
-		if (recv(client->getFd()->fd, buffer, 100, 0) < 0) {
+		if (recv(client->getFd().fd, buffer, 100, 0) < 0) {
 			if (errno != EWOULDBLOCK)
 				throw std::runtime_error("Error while reading buffer from client.");
 		}
@@ -246,7 +247,7 @@ void		Server::live()
 
 		// We are verrify on each fd if the event is comming from him
 		for (poll_it it = _fds.begin(); it != _fds.end(); it++) {
-
+			log("HERE THE OPT FD : " + ft_itoastr(it->fd));
 			if (it->revents == 0)
 				continue;
 
@@ -265,7 +266,7 @@ void		Server::live()
 				if (findClientByFd(*it))
 					_onClientMessage(findClientByFd(*it));
 				else 
-					log("WARNING HAS NOT ");
+					log("LOG AS NOT FOUND FD : " + ft_itoastr(it->fd));
 			}
 		}
 	}
