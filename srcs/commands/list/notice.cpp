@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   notice.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:22 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:52:26 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 01:58:23 by grosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 
 void Command::_notice()
 {
-    if (_args.size() < 2 || _args[0].empty() || _args[1].empty()) 
-    {
-		_client->reply(ERR_NEEDMOREPARAMS(_client->getNickname(), "NOTICE"));
+	if (_args.size() < 2 || _args[0].empty() || _args[1].empty()) {
+		_client->reply(ERR_NEEDMOREPARAMS(_client->getNickname(), "PRIVMSG"));
 		return;
 	}
 
@@ -32,9 +31,22 @@ void Command::_notice()
 
 	if (target.at(0) == '#') {
 
-		Channel *channel = _client->getChannel();
+		Channel *channel = _server->findChannelByName(target.substr(1));
+		
 		if (!channel) {
-			_client->reply(ERR_NOSUCHCHANNEL(_client->getNickname(), channel->getName()));
+			_client->reply(ERR_NOSUCHCHANNEL(_client->getNickname(), target));
+			return;
+		}
+
+		vector<Client *>		clients = *channel->getClients();
+		client_it				i;
+		
+		for (i = clients.begin(); i != clients.end(); i++)
+			if (*i == _client)
+				break;
+		if (i == clients.end())
+		{
+			_client->reply(ERR_CANNOTSENDTOCHAN(_client->getNickname(), target));
 			return;
 		}
 
@@ -48,5 +60,5 @@ void Command::_notice()
 		return;
 	}
 
-	dest->write(RPL_NOTICE(_client->prefix(), target, message));	
+	dest->write(RPL_NOTICE(_client->prefix(), target, message));
 }
