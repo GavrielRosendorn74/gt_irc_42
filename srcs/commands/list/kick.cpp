@@ -6,7 +6,7 @@
 /*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:20:17 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 01:42:48 by tanguy           ###   ########.fr       */
+/*   Updated: 2022/08/09 02:05:15 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void Command::_kick()
 			comment.append(*it + " ");
 	}
 
-	Channel *channel = _client->getChannel();
+	Channel *channel = _server->findChannelByName(target.substr(1));;
 	if (!channel || channel->getName() != name) {
 		_client->reply(ERR_NOTONCHANNEL(_client->getNickname(), name));
 		return;
