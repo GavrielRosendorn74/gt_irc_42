@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grosendo <grosendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tanguy <tanguy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 09:18:31 by grosendo          #+#    #+#             */
-/*   Updated: 2022/08/09 13:34:53 by grosendo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:40:52 by tanguy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,7 +247,6 @@ void		Server::live()
 
 		// We are verrify on each fd if the event is comming from him
 		for (poll_it it = _fds.begin(); it != _fds.end(); it++) {
-			log("HERE THE OPT FD : " + ft_itoastr(it->fd));
 			if (it->revents == 0)
 				continue;
 
@@ -265,8 +264,6 @@ void		Server::live()
 				}
 				if (findClientByFd(*it))
 					_onClientMessage(findClientByFd(*it));
-				else 
-					log("LOG AS NOT FOUND FD : " + ft_itoastr(it->fd));
 			}
 		}
 	}
